@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const name = 'Xeven';
+  const x = 10;
+  const y = 20;
+  const loggedIn = true;
+  const names = ['Xeven', 'Xeven', 'Xeven', 'Xeven'];
+  const styles = {
+    color: 'purple',
+    fontFamily: 'Helvetica',
+  };
+  // if (loggedIn) {
+  //   return 'Hi Congrats User';
+  // }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {
+        <>
+          <div className='text-5xl'>Ahmad</div>
+          <p style={{ color: 'red', fontSize: '20px' }}>Hi {name}</p>
+          <h3 style={styles}>sum of x and y is {x + y}</h3>
+          {loggedIn && <div>Hi Congrats User</div>}
+          <ul>
+            {names.map((name, index) => (
+              <li key={index}>{name}</li>
+            ))}
+          </ul>
+        </>
+      }
     </>
-  )
+  );
 }
 
-export default App
+export default App;
