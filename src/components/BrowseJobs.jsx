@@ -3,6 +3,7 @@ import JobListing from './JobListing';
 
 const BrowseJobs = () => {
   const recentJobs = jobs.slice(0, 3);
+  console.log('recentJobs', recentJobs);
   return (
     <div>
       <section className='bg-blue-50 px-4 py-10'>
@@ -11,7 +12,7 @@ const BrowseJobs = () => {
             Browse Jobs
           </h2>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {recentJobs.map((job) => (
+            {recentJobs?.map((job) => (
               <JobListing key={job.id} job={job} />
             ))}
           </div>

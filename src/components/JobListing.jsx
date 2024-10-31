@@ -2,11 +2,14 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FaMapMarker } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const JobListing = ({ job }) => {
+  console.log('jobxx', job);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  let description = job.description;
+  let description = job?.description || 'No description available.'; // Fallback message
+  console.log('description', description);
   if (!showFullDescription) {
     description = description.substring(0, 90) + '...';
   }
@@ -32,12 +35,12 @@ const JobListing = ({ job }) => {
             <FaMapMarker className='text-lg inline mr-1' />
             {job.location}
           </div>
-          <a
-            href='job.html'
+          <Link
+            to='/'
             className='h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm'
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -47,5 +50,5 @@ const JobListing = ({ job }) => {
 export default JobListing;
 
 JobListing.propTypes = {
-  job: PropTypes.object,
+  job: PropTypes.any,
 };
