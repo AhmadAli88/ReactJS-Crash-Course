@@ -1,15 +1,10 @@
-/*eslint-disable*/
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
 const JobListing = ({ job }) => {
-  console.log('jobxx', job);
   const [showFullDescription, setShowFullDescription] = useState(false);
-
-  let description = job?.description || 'No description available.'; // Fallback message
-  console.log('description', description);
+  let description = job?.description || 'No description available.';
   if (!showFullDescription) {
     description = description.substring(0, 90) + '...';
   }
@@ -36,7 +31,7 @@ const JobListing = ({ job }) => {
             {job.location}
           </div>
           <Link
-            to='/'
+            to={`/job/${job.id}`}
             className='h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm'
           >
             Read More
@@ -50,5 +45,5 @@ const JobListing = ({ job }) => {
 export default JobListing;
 
 JobListing.propTypes = {
-  job: PropTypes.any,
+  job: PropTypes.object,
 };

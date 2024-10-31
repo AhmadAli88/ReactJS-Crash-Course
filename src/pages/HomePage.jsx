@@ -1,6 +1,7 @@
 import Hero from '../components/Hero';
 import HomeCards from '../components/HomeCards';
-import BrowseJobs from '../components/BrowseJobs';
+import JobListings from '../components/JobListings';
+
 import ViewJobs from '../components/ViewAllJobs';
 
 const HomePage = () => {
@@ -8,7 +9,7 @@ const HomePage = () => {
     <div>
       <Hero />
       <HomeCards />
-      <BrowseJobs />
+      <JobListings />
       <ViewJobs />
     </div>
   );
