@@ -9,23 +9,32 @@ import Spinner from './Spinner';
 
 // const JobListings = ({ isHome = false }) => {
 const JobListings = ({ isHome }) => {
-  const apiUrl = isHome ? '/api/jobs' : '/api/jobs';
   // console.log('jobs:::::::::::', jobs);
   // const recentJobs = isHome ? jobs : jobs.slice(0, 3);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch('/api/jobs')
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchJobs = async () => {
+      const apiUrl = isHome ? '/api/jobs?_limit=3' : '/api/jobs';
+      setLoading(true); // Set loading to true at the start of fetch
+
+      try {
+        const res = await fetch(apiUrl);
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status}`);
+        }
+        const data = await res.json();
         setJobs(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+      } finally {
+        setLoading(false); // Ensure loading stops after fetch completes
+      }
+    };
+
+    fetchJobs();
+  }, [isHome]);
+
   return (
     <section className='bg-blue-50 px-4 py-10'>
       <div className='container-xl lg:container m-auto'>
